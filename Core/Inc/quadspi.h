@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Company: Optimus Prime, Inc.
+ * @Author: Qijian Lu
+ * @Date: 2020-12-08 18:25:27
+ * @LastEditors: Qijian Lu
+ * @LastEditTime: 2020-12-15 14:41:54
+ */
 /**
   ******************************************************************************
   * @file    quadspi.h
@@ -66,7 +74,7 @@ extern "C"
 #define CHIP_ERASE_CMD 0xC7
 #define QUAD_IN_FAST_PROG_CMD 0x02
 #define READ_CONFIGURATION_REG_CMD 0xC0
-#define QUAD_OUT_FAST_READ_CMD 0xEB
+#define QUAD_OUT_FAST_READ_CMD 0x0B
 #define RESET_ENABLE_CMD 0x66
 #define RESET_EXECUTE_CMD 0x99
 #define DUMMY_CLOCK_CYCLES_READ_QUAD 8

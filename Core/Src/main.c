@@ -95,7 +95,11 @@ int main(void)
     uint8_t buffer_test[MEMORY_SECTOR_SIZE];
     uint32_t var = 0;
 
-    CSP_QUADSPI_Init();
+    if (CSP_QUADSPI_Init() != HAL_OK)
+    {
+        while (1)
+            ;
+    }
 
     for (var = 0; var < MEMORY_SECTOR_SIZE; var++)
     {
@@ -112,12 +116,12 @@ int main(void)
                 ; //breakpoint - error detected
         }
 
-        if (CSP_QSPI_WriteMemory(buffer_test, var * MEMORY_SECTOR_SIZE, 255) != HAL_OK)
-        {
+         if (CSP_QSPI_WriteMemory(buffer_test, var * MEMORY_SECTOR_SIZE, 255) != HAL_OK)
+         {
 
-            while (1)
-                ; //breakpoint - error detected
-        }
+             while (1)
+                 ; //breakpoint - error detected
+         }
     }
 
     if (CSP_QSPI_ReadMemory(buffer_test, 0, MEMORY_SECTOR_SIZE) != HAL_OK)
@@ -132,7 +136,6 @@ int main(void)
         while (1)
             ; //breakpoint - error detected
     }
-
 
     for (var = 0; var < SECTORS_COUNT; var++)
     {
