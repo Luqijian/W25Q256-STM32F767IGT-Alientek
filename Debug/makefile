@@ -28,34 +28,35 @@ endif
 
 -include ../makefile.defs
 
-BUILD_ARTIFACT_NAME := W25Q256-STM32F767IGT-OpenDev
+BUILD_ARTIFACT_NAME := W25Q256-STM32F767IGT-Alientek
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX := 
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-W25Q256-STM32F767IGT-OpenDev.elf \
+W25Q256-STM32F767IGT-Alientek.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-W25Q256-STM32F767IGT-OpenDev.list \
+W25Q256-STM32F767IGT-Alientek.list \
 
 OBJCOPY_BIN += \
-W25Q256-STM32F767IGT-OpenDev.bin \
+W25Q256-STM32F767IGT-Alientek.bin \
 
 
 # All Target
-all: main-build
+all:
+	+@$(MAKE) --no-print-directory main-build && $(MAKE) --no-print-directory post-build
 
 # Main-build Target
-main-build: W25Q256-STM32F767IGT-OpenDev.elf secondary-outputs
+main-build: W25Q256-STM32F767IGT-Alientek.elf secondary-outputs
 
 # Tool invocations
-W25Q256-STM32F767IGT-OpenDev.elf: $(OBJS) $(USER_OBJS) D:\Code\STM32CubeIDE\W25Q256-STM32F767IGT-OpenDev\STM32F767IGTX_FLASH.ld
-	arm-none-eabi-gcc -o "W25Q256-STM32F767IGT-OpenDev.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\Code\STM32CubeIDE\W25Q256-STM32F767IGT-OpenDev\STM32F767IGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="W25Q256-STM32F767IGT-OpenDev.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+W25Q256-STM32F767IGT-Alientek.elf: $(OBJS) $(USER_OBJS) D:\Code\STM32CubeIDE\W25Q256-STM32F767IGT-OpenDev\linker.ld
+	arm-none-eabi-gcc -o "W25Q256-STM32F767IGT-Alientek.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\Code\STM32CubeIDE\W25Q256-STM32F767IGT-OpenDev\linker.ld" --specs=nosys.specs -Wl,-Map="W25Q256-STM32F767IGT-Alientek.map" -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -64,19 +65,23 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-W25Q256-STM32F767IGT-OpenDev.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "W25Q256-STM32F767IGT-OpenDev.list"
+W25Q256-STM32F767IGT-Alientek.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "W25Q256-STM32F767IGT-Alientek.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-W25Q256-STM32F767IGT-OpenDev.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "W25Q256-STM32F767IGT-OpenDev.bin"
+W25Q256-STM32F767IGT-Alientek.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "W25Q256-STM32F767IGT-Alientek.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) *
+	-@echo ' '
+
+post-build:
+	cmd.exe /C copy/Y "W25Q256-STM32F767IGT-Alientek.elf" "..\W25Q256-STM32F767IGT-Alientek.stldr"
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
@@ -89,6 +94,6 @@ warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
 .PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
-.SECONDARY:
+.SECONDARY: post-build
 
 -include ../makefile.targets
