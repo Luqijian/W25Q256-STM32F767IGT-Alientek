@@ -55,8 +55,8 @@ all:
 main-build: W25Q256-STM32F767IGT-Alientek.elf secondary-outputs
 
 # Tool invocations
-W25Q256-STM32F767IGT-Alientek.elf: $(OBJS) $(USER_OBJS) D:\Code\STM32CubeIDE\W25Q256-STM32F767IGT-OpenDev\linker.ld
-	arm-none-eabi-gcc -o "W25Q256-STM32F767IGT-Alientek.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\Code\STM32CubeIDE\W25Q256-STM32F767IGT-OpenDev\linker.ld" --specs=nosys.specs -Wl,-Map="W25Q256-STM32F767IGT-Alientek.map" -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+W25Q256-STM32F767IGT-Alientek.elf: $(OBJS) $(USER_OBJS) D:\Code\STM32CubeIDE\W25Q256-STM32F767IGT-Alientek\linker.ld
+	arm-none-eabi-gcc -o "W25Q256-STM32F767IGT-Alientek.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\Code\STM32CubeIDE\W25Q256-STM32F767IGT-Alientek\linker.ld" --specs=nosys.specs -Wl,-Map="W25Q256-STM32F767IGT-Alientek.map" -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
