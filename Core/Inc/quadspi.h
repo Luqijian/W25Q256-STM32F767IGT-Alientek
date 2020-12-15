@@ -4,7 +4,7 @@
  * @Author: Qijian Lu
  * @Date: 2020-12-08 18:25:27
  * @LastEditors: Qijian Lu
- * @LastEditTime: 2020-12-15 14:41:54
+ * @LastEditTime: 2020-12-15 19:50:26
  */
 /**
   ******************************************************************************
@@ -57,9 +57,10 @@ extern "C"
 
 /* W25Q256 memory parameters*/
 #define MEMORY_FLASH_SIZE 0x2000000 /* 256 MBits*/
-#define MEMORY_SECTOR_SIZE 0x10000  /* 64k Bytes */
-// #define MEMORY_SECTOR_SIZE 0x100  /* 256 Bytes */
-#define MEMORY_PAGE_SIZE 0x1000 /* 4K bytes */
+#define MEMORY_BLOCK_SIZE 0x10000   /* 1024 sectors of 64KBytes */
+#define MEMORY_SECTOR_SIZE 0x1000   /* 16384 subsectors of 4kBytes */
+#define MEMORY_PAGE_SIZE 0x100      /* 262144 pages of 256 bytes */
+// #define MEMORY_PAGE_SIZE 0x1000 /* 4K bytes */
 
 /* W25Q256  commands */
 #define WRITE_ENABLE_CMD 0x06

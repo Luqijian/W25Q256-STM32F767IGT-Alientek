@@ -271,7 +271,6 @@ uint8_t QSPI_AutoPollingMemReady(void)
     if (HAL_QSPI_AutoPolling(&hqspi, &sCommand, &sConfig,
                              HAL_QPSI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
     {
-        printf("AutoPolling mode error!\r\n");
         return HAL_ERROR;
     }
 
@@ -497,38 +496,6 @@ uint8_t QSPI_Configuration(void)
         return HAL_ERROR;
     }
 
-    // /*read configuration register*/
-    // sCommand.InstructionMode = QSPI_INSTRUCTION_4_LINES;
-    // sCommand.Instruction = READ_CONFIGURATION_REG_CMD;
-    // sCommand.AddressMode = QSPI_ADDRESS_NONE;
-    // sCommand.AlternateByteMode = QSPI_ALTERNATE_BYTES_NONE;
-    // sCommand.DataMode = QSPI_DATA_4_LINES;
-    // sCommand.DummyCycles = 0;
-    // sCommand.DdrMode = QSPI_DDR_MODE_DISABLE;
-    // sCommand.DdrHoldHalfCycle = QSPI_DDR_HHC_ANALOG_DELAY;
-    // sCommand.SIOOMode = QSPI_SIOO_INST_EVERY_CMD;
-    // sCommand.NbData = 1;
-
-    // if (HAL_QSPI_Command(&hqspi, &sCommand, HAL_QPSI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
-    // {
-    //     return HAL_ERROR;
-    // }
-
-    // if (HAL_QSPI_Receive(&hqspi, &reg,
-    //                      HAL_QPSI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
-    // {
-    //     return HAL_ERROR;
-    // }
-
-    // if (QSPI_WriteEnable() != HAL_OK)
-    // {
-
-    //     return HAL_ERROR;
-    // }
-
-    // /*set dummy cycles*/
-    // MODIFY_REG(reg, 0xF0, (DUMMY_CLOCK_CYCLES_READ_QUAD << POSITION_VAL(0xF0)));
-
     sCommand.InstructionMode = QSPI_INSTRUCTION_4_LINES;
     sCommand.Instruction = WRITE_VOL_CFG_REG_CMD;
     sCommand.AlternateByteMode = QSPI_ALTERNATE_BYTES_NONE;
@@ -580,13 +547,11 @@ uint8_t CSP_QSPI_EraseSector(uint32_t EraseStartAddress,
 
         if (QSPI_WriteEnable() != HAL_OK)
         {
-            printf("Write enable error! \r\n");
             return HAL_ERROR;
         }
 
         if (HAL_QSPI_Command(&hqspi, &sCommand, HAL_QPSI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
         {
-            printf("Erase error! \r\n");
             return HAL_ERROR;
         }
         EraseStartAddress += MEMORY_SECTOR_SIZE;
@@ -662,12 +627,6 @@ uint8_t CSP_QSPI_WriteMemory(uint8_t *buffer, uint32_t address,
 
             return HAL_ERROR;
         }
-
-        // /* Enable write operations */
-        // if (QSPI_WriteEnable() != HAL_OK)
-        // {
-        //     return HAL_ERROR;
-        // }
 
         /* Transmission of the data */
         if (HAL_QSPI_Transmit(&hqspi, buffer, HAL_QPSI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)

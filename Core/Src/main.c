@@ -27,7 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include <string.h>
-#define SECTORS_COUNT 512
+#define SECTORS_COUNT 100
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -116,7 +116,7 @@ int main(void)
                 ; //breakpoint - error detected
         }
 
-         if (CSP_QSPI_WriteMemory(buffer_test, var * MEMORY_SECTOR_SIZE, 255) != HAL_OK)
+         if (CSP_QSPI_WriteMemory(buffer_test, var * MEMORY_SECTOR_SIZE, sizeof(buffer_test)) != HAL_OK)
          {
 
              while (1)
@@ -124,15 +124,14 @@ int main(void)
          }
     }
 
-    if (CSP_QSPI_ReadMemory(buffer_test, 0, MEMORY_SECTOR_SIZE) != HAL_OK)
-    {
-        while (1)
-            ;
-    }
+    // if (CSP_QSPI_ReadMemory(buffer_test, 0, MEMORY_SECTOR_SIZE) != HAL_OK)
+    // {
+    //     while (1)
+    //         ;
+    // }
 
     if (CSP_QSPI_EnableMemoryMappedMode() != HAL_OK)
     {
-
         while (1)
             ; //breakpoint - error detected
     }
@@ -153,8 +152,6 @@ int main(void)
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-        printf("Test passed! \r\n");
-        HAL_Delay(20);
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
