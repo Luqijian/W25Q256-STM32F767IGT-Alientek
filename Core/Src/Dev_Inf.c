@@ -4,7 +4,7 @@
  * @Author: Qijian Lu
  * @Date: 2020-11-30 19:03:19
  * @LastEditors: Qijian Lu
- * @LastEditTime: 2020-12-01 09:55:07
+ * @LastEditTime: 2020-12-15 20:39:47
  */
 /*
  * Dev_Inf.c
@@ -19,7 +19,7 @@ __root struct StorageInfo const StorageInfo = {
 #else
 struct StorageInfo const StorageInfo = {
 #endif
-    "W25Q256-STM32F767IGT-OpenEdv", // Device Name + version number
+    "W25Q256-STM32F767IGT-Alientek", // Device Name + version number
     NOR_FLASH,                      // Device Type
     0x90000000,                     // Device Start Address
     MEMORY_FLASH_SIZE,              // Device Size in Bytes
