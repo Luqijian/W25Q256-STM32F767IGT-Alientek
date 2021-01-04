@@ -1,11 +1,3 @@
-/*
- * @Description: 
- * @Company: Optimus Prime, Inc.
- * @Author: Qijian Lu
- * @Date: 2020-12-08 18:25:27
- * @LastEditors: Qijian Lu
- * @LastEditTime: 2020-12-15 19:50:26
- */
 /**
   ******************************************************************************
   * @file    quadspi.h
