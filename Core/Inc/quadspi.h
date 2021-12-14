@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -21,29 +21,28 @@
 #define __QUADSPI_H__
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-    /* USER CODE BEGIN Includes */
+/* USER CODE BEGIN Includes */
 
-    /* USER CODE END Includes */
+/* USER CODE END Includes */
 
-    extern QSPI_HandleTypeDef hqspi;
+extern QSPI_HandleTypeDef hqspi;
 
-    /* USER CODE BEGIN Private defines */
+/* USER CODE BEGIN Private defines */
     uint8_t CSP_QUADSPI_Init(void);
     uint8_t CSP_QSPI_EraseSector(uint32_t EraseStartAddress, uint32_t EraseEndAddress);
     uint8_t CSP_QSPI_WriteMemory(uint8_t *buffer, uint32_t address, uint32_t buffer_size);
     uint8_t CSP_QSPI_ReadMemory(uint8_t *buffer, uint32_t address, uint32_t buffer_size);
     uint8_t CSP_QSPI_EnableMemoryMappedMode(void);
     uint8_t CSP_QSPI_Erase_Chip(void);
-    /* USER CODE END Private defines */
+/* USER CODE END Private defines */
 
-    void MX_QUADSPI_Init(void);
+void MX_QUADSPI_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 
@@ -71,7 +70,7 @@ extern "C"
 #define RESET_ENABLE_CMD 0x66
 #define RESET_EXECUTE_CMD 0x99
 #define DUMMY_CLOCK_CYCLES_READ_QUAD 8
-    /* USER CODE END Prototypes */
+/* USER CODE END Prototypes */
 
 #ifdef __cplusplus
 }
